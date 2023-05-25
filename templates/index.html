@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Gestor de Archivos UNI - Seguro y Confiable</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap');
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+      background-color: #140f34;
+    }
+
+    .container {
+      text-align: center;
+      padding: 40px;
+      background-color: rgba(255, 255, 255, 0.9);
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+      animation: slide-up 1s ease;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    @keyframes slide-up {
+      0% {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    h1 {
+      color: #140f34;
+      font-weight: 500;
+      margin-bottom: 20px;
+      font-size: 32px;
+    }
+
+    p {
+      color: #6c6c6c;
+      font-size: 18px;
+      margin-bottom: 40px;
+    }
+
+    .btn-container {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .btn-container a {
+      display: inline-block;
+      margin: 0 10px;
+      padding: 14px 24px;
+      background-color: #140f34;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: 500;
+      transition: background-color 0.3s ease;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    }
+
+    .btn-container a:hover {
+      background-color: #3f2b5b;
+    }
+
+    /* Animación de fondo */
+    .background-animation {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="background-animation">
+    <canvas></canvas>
+  </div>
+  <div class="container">
+    <h1>Gestor de Archivos UNI</h1>
+    <p>Seguro y Confiable</p>
+    <div class="btn-container">
+      <a href="http://127.0.0.1:8000/inicio_sesion">Iniciar Sesión</a>
+      <a href="http://127.0.0.1:8000/registro">Registrarse</a>
+    </div>
+  </div>
+  <script>
+    // Configuración de la animación
+    const canvas = document.querySelector("canvas");
+    const ctx = canvas.getContext("2d");
+    let width, height;
+
+    // Configuración del canvas
+    function setupCanvas() {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    }
+
+    window.addEventListener("resize", setupCanvas);
+    setupCanvas();
+
+    // Generar triángulos
+    const triangles = [];
+
+    function generateTriangles() {
+      const numTriangles = Math.floor(width / 40);
+
+      for (let i = 0; i < numTriangles; i++) {
+        const x = Math.random() * width;
+        const y = Math.random() * height;
+        const size = Math.random() * 50 + 10;
+        const speed = Math.random() * 0.2 + 0.1;
+
+        triangles.push({ x, y, size, speed });
+      }
+    }
+
+    // Dibujar triángulos
+    function drawTriangles() {
+      ctx.clearRect(0, 0, width, height);
+
+      triangles.forEach((triangle) => {
+        ctx.beginPath();
+        ctx.moveTo(triangle.x, triangle.y);
+        ctx.lineTo(triangle.x + triangle.size, triangle.y);
+        ctx.lineTo(triangle.x + triangle.size / 2, triangle.y + triangle.size);
+        ctx.closePath();
+        ctx.fillStyle = "rgba(197, 0, 105, 0.2)";
+        ctx.fill();
+
+        // Mover triángulo
+        triangle.y += triangle.speed;
+
+        if (triangle.y > height) {
+          triangle.y = -triangle.size;
+        }
+      });
+
+      requestAnimationFrame(drawTriangles);
+    }
+
+    generateTriangles();
+    drawTriangles();
+  </script>
+</body>
+</html>

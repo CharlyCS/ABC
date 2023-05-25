@@ -1,0 +1,39 @@
+{% extends "maestra_2.html" %}
+{% block titulo %}
+Editar alumno
+{% endblock %}
+
+{% block contenido %}
+<section class="section">
+    <div class="columns">
+        <div class="column">
+            <h3 class="is-size-3">Editar Usuario</h3>
+            <form action="{{url_for('actualizar_usuario')}}" method="post">
+                {# Enviar el id en un campo oculto #}
+                <input type="hidden" name="idUsuario" value="{{usuario[0]}}">
+                <label for="Nombre">Nombre:</label>
+                <input value="{{usuario[1]}}" required type="text" class="input" placeholder="Nombre" name="nombre" id="nombre">
+                
+                <label for="Apellidos">Apellidos:</label>
+                <input value="{{usuario[2]}}" required type="text" class="input" placeholder="apellidos" name="apellidos" id="apellidos">
+                
+                <label for="Correo">Correo:</label>
+                <input value="{{usuario[3]}}" required type="text" class="input" placeholder="correo" name="correo" id="correo">
+                
+                <label for="Celular">Celular:</label>
+                <input value="{{usuario[4]}}" required type="text" class="input" placeholder="celular" name="celular" id="celular">
+                
+                <label for="Rol">Rol:</label>
+                <input value="{{usuario[5]}}" required type="text" class="input" placeholder="rol" name="rol" id="rol">
+                
+                <label for="Contraseña">Contraseña:</label>
+                <input value="{{usuario[6]}}" required type="text" class="input" placeholder="contraseña" name="contraseña" id="contraseña">
+                
+
+                <button type="submit" class="button is-success mt-2">Guardar</button>
+                <a href="{{url_for('usuarios')}}" class="button is-primary mt-2">Volver</a>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}

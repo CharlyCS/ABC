@@ -1,0 +1,56 @@
+{% extends "maestra_2.html" %}
+{% block titulo %} Alumnos {% endblock %}
+{% block contenido %}
+
+<section class="section">
+    <div class="columns">
+        <div class="column">
+            <div class="columns">
+                <img alt="www.uni.edu.pe"
+                    src="https://cdn-icons-png.flaticon.com/512/3601/3601163.png"
+                    style="max-height: 60px" />
+                <h2 class="is-size-2">Lista de Documentos</h2>
+            </div>
+            <a href="{{url_for('formulario_agregar_documento')}}" style="background-color: #00c4a7;" class="button is-success"> <strong>Agregar Documento</strong> </a>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID_Archivo</th>
+                        <th>Nombre de Archivo</th>
+                        <th>Descripcion</th>
+                        <th>Categoria</th>
+                        <th>Nose</th>
+                        <th>Editar</th>
+                        <th>Eliminar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for documento in documentos %}
+                    <tr>
+                        <td>{{documento[0]}}</td>
+                        <td>{{documento[1]}}</td>
+                        <td>{{documento[2]}}</td>
+                        <td>{{documento[3]}}</td>
+                        <td>{{documento[4]}}</td>
+                        
+                        <td>
+                            {# Pasar el id lo que hay en juego[0] #}
+                            <a href="{{url_for('editar_documento', id=documento[0])}}" class="button is-info">Editar</a>
+                        </td>
+                        
+                        <td>
+                            <form action="{{url_for('eliminar_documento')}}" method="POST">
+                                <input type="hidden" name="idDocumento" value="{{documento[0]}}">
+                                <button class="button is-danger">Eliminar</button>
+                            </form>
+                        </td>
+                        
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+{% endblock %}
+

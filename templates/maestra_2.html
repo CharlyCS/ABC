@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Poner un block para que luego pueda ser remplazado en las siguientes plantillas; lo mismo con el  block contenido-->
+    <title>CRUD MySQL con Flask - {% block titulo %}{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
+</head>
+
+<body>
+    <nav class="navbar is-warning" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a href="https://www.uni.edu.pe/" class="navbar-item">
+                <img alt="www.uni.edu.pe"
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Uni-logo_transparente_granate.png/716px-Uni-logo_transparente_granate.png"
+                    style="max-height: 80px" />
+            </a>
+            <button class="navbar-burger is-warning button" aria-label="menu" aria-expanded="false"
+                data-target="navbarBasicExample">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </button>
+        </div>
+        <div class="navbar-menu">
+            <div class="navbar-start">
+                <a href="{{url_for('documentos')}}" class="navbar-item" href="{}"> <strong>Bienvenido Usuario_1</strong> </a>
+            </div>
+
+            <div class="navbar-menu">
+                <div class="navbar-end">
+                    <a href="{{url_for('usuarios')}}" class="navbar-item" href="{}">Lista de usuarios</a>
+                </div>
+            </div>
+            
+            <div class="navbar-end">
+                <div class="navbar-item">
+                
+                    <div class="buttons">
+                        <a href="{{url_for('inicio_sesion')}}" class="button is-primary">
+                            <strong>Cerrar Sesion</strong>
+                        </a>
+                    </div>
+                
+                </div>
+            </div>
+        
+        </div>
+    </nav>
+    {%block contenido %} {% endblock %}
+</body>
+
+</html>
